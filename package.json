@@ -1,0 +1,23 @@
+{
+  "name": "buche-cytoscape",
+  "description": "Cytoscape channel and element for Buche.",
+  "version": "0.0.0",
+  "format": "cjs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/breuleux/buche-cytoscape"
+  },
+  "keywords": [
+    "buche",
+    "graph",
+    "cytoscape"
+  ],
+  "author": "Olivier Breuleux",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "dependencies": {
+    "cytoscape": "^3.2.5",
+    "cytoscape-dagre": "^2.1.0"
+  },
+  "devDependencies": {}
+}
