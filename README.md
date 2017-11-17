@@ -55,7 +55,7 @@ This creates an edge between nodes `A` and `B`, but note that both must exist be
 You can give an `options` object with more customization. Available options: http://js.cytoscape.org/#notation/elements-json
 
 ```json
-{"command":"element","path":"/graph",{"options": {"data": {"source":"A","target":"B"}},"classes":"abc"}}
+{"command":"element","path":"/graph","options": {"data": {"source":"A","target":"B"},"classes":"abc"}}
 ```
 
 ## `cytoscape-graph` component
