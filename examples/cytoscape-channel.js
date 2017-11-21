@@ -1,3 +1,4 @@
+#!/usr/bin/env buche --inspect node
 
 function buche(cfg) {
     console.log(JSON.stringify(cfg));
@@ -6,7 +7,7 @@ function buche(cfg) {
 buche({
     command: 'require',
     path: '/',
-    pluginPath: '../lib/index.js'
+    pluginPath: `${__dirname}/../lib/index.js`
 });
 
 buche({
@@ -14,7 +15,7 @@ buche({
     path: '/graph',
     type: 'cytoscape',
     options: {
-        style: "./graph-style.css",
+        style: `${__dirname}/graph-style.css`,
         layout: {
             name: 'cola'
         }
@@ -27,15 +28,6 @@ if (connList.length == 0) {
 }
 
 let connections = connList.map(pair => pair.split(''));
-let nodes = new Set(connList.join(''));
-
-for (let node of nodes) {
-    buche({
-        command: 'element',
-        path: '/graph',
-        id: node
-    });
-}
 
 for (let [from, to] of connections) {
     buche({

@@ -1,3 +1,4 @@
+#!/usr/bin/env buche --inspect node
 
 function buche(cfg) {
     console.log(JSON.stringify(cfg));
@@ -45,7 +46,7 @@ elem = `
 buche({
     command: 'require',
     path: '/',
-    pluginPath: '../lib/index.js'
+    pluginPath: `${__dirname}/../lib/index.js`
 });
 
 buche({
