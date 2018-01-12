@@ -15,6 +15,19 @@
   "author": "Olivier Breuleux",
   "license": "MIT",
   "main": "./lib/index.js",
+  "buche": {
+    "requireHowto": {
+      "command": "require",
+      "path": "/",
+      "pluginName": "cytoscape",
+      "channels": {
+        "cytoscape": true
+      },
+      "components": {
+        "cytoscape-graph": true
+      }
+    }
+  },
   "dependencies": {
     "cytoscape": "^3.2.5",
     "cytoscape-cola": "^2.0.0",

@@ -46,7 +46,8 @@ elem = `
 buche({
     command: 'require',
     path: '/',
-    pluginPath: `${__dirname}/../lib/index.js`
+    pluginPath: `${__dirname}/../lib/index.js`,
+    components: 'cytoscape-graph'
 });
 
 buche({
