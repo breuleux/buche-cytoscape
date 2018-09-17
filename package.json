@@ -15,24 +15,12 @@
   "author": "Olivier Breuleux",
   "license": "MIT",
   "main": "./lib/index.js",
-  "buche": {
-    "requireHowto": {
-      "command": "require",
-      "path": "/",
-      "pluginName": "cytoscape",
-      "channels": {
-        "cytoscape": true
-      },
-      "components": {
-        "cytoscape-graph": true
-      }
-    }
-  },
   "dependencies": {
     "cytoscape": "^3.2.5",
     "cytoscape-cola": "^2.0.0",
     "cytoscape-dagre": "^2.1.0",
-    "cytoscape-qtip": "^2.7.1"
+    "cytoscape-popper": "^1.0.2",
+    "tippy.js": "^2.6.0"
   },
   "devDependencies": {}
 }
