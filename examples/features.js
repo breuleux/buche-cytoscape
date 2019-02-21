@@ -26,9 +26,8 @@ buche({
 
 
 // You can make a graph in a single command as follows. There should be a
-// single command-configure tag, and inside, a script tag containing the
-// JSON configuration. Note that you can nest <cytoscape-graph> inside other
-// HTML elements.
+// single script tag containing the JSON configuration. It is important
+// that the script type is "buche/configure", and the contents valid JSON.
 
 // The available configuration options are documented here:
 // http://js.cytoscape.org/#getting-started/specifying-basic-options
@@ -38,7 +37,7 @@ buche({
     parent: "/",
     content:`
     <cytoscape-graph width="1000px" height="500px">
-        <command-configure><script type="application/json">
+        <script type="buche/configure">
         {
             "style": "${__dirname}/graph-style.css",
             "layout": {"name": "cola"},
@@ -58,7 +57,7 @@ buche({
                           "tooltip": "<b>Scissors</b> beats <b>Paper</b>"}}
             ]
         }
-        </script></command-configure>
+        </script>
     </cytoscape-graph>`
 });
 

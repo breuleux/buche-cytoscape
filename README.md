@@ -23,7 +23,7 @@ The component is instantiated in HTML as follows:
 
 ```html
 <cytoscape-graph width="1000px" height="500px">
-    <command-configure><script type="application/json">
+    <script type="buche/configure">
     {
         "style": "<style or path to style>",
         "layout": {"name": "cola"},
@@ -36,7 +36,7 @@ The component is instantiated in HTML as follows:
             {"data": {"source": "C", "target": "B"}}
         ]
     }
-    </script></command-configure>
+    </script>
 </cytoscape-graph>`
 ```
 
