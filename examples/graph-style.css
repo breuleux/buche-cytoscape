@@ -8,3 +8,13 @@ edge {
     target-arrow-shape: triangle;
     target-arrow-color: red;
 }
+node.labeled {
+    background-color: lightblue;
+    color: white;
+    text-valign: center;
+    text-halign: center;
+    shape: rectangle;
+    content: data(label);
+    width: label;
+    padding: 3px;
+}

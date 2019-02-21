@@ -1,0 +1,20 @@
+.tippy-tooltip.blueberry-theme {
+    color: lightblue;
+    background-color: blue;
+}
+
+.tippy-popper[x-placement^='top'] .tippy-tooltip.blueberry-theme .tippy-arrow {
+    border-top-color: blue;
+}
+
+.tippy-popper[x-placement^='bottom'] .tippy-tooltip.blueberry-theme .tippy-arrow {
+    border-bottom-color: blue;
+}
+
+.tippy-popper[x-placement^='left'] .tippy-tooltip.blueberry-theme .tippy-arrow {
+    border-left-color: blue;
+}
+
+.tippy-popper[x-placement^='right'] .tippy-tooltip.blueberry-theme .tippy-arrow {
+    border-right-color: blue;
+}
