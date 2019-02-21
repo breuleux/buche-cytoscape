@@ -9,13 +9,6 @@ buche({
     name: `${__dirname}/../lib/index.js`,
 });
 
-
-// buche({
-//     parent: "/",
-//     children: '<cytoscape-graph width="1000px" address="graph"></cytoscape-graph>'
-// })
-
-
 buche({
     parent: "/",
     tag: 'cytoscape-graph',
@@ -24,18 +17,13 @@ buche({
         width: '1000px',
         height: '1000px',
     }
-    // children: '<cytoscape-graph width="1000px" address="graph"></cytoscape-graph>'
 })
-
 
 buche({
     parent: "/graph",
     command: "configure",
     style: `${__dirname}/graph-style.css`,
-    tooltipTheme: 'banana',
-    layout: {
-        name: "cola"
-    }
+    layout: {name: "cola"}
 })
 
 let connList = process.argv.slice(2);
