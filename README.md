@@ -3,7 +3,7 @@
 
 Buche plugin for the [cytoscape](http://js.cytoscape.org) graph library.
 
-Provides the `cytoscape-graph` component and the `cytoscape` channel type.
+Provides the `cytoscape-graph` component.
 
 
 ## Use
@@ -11,93 +11,101 @@ Provides the `cytoscape-graph` component and the `cytoscape` channel type.
 First you must output the following `buche` command:
 
 ```json
-{"command":"require","path":"/","pluginName":"cytoscape"}
+{"command":"plugin","name":"cytoscape"}
 ```
 
 Buche will prompt you to install the plugin if it is not available, although you can install it manually with `buche --install cytoscape`.
 
 
-## `cytoscape` channel
+## `<cytoscape-graph>` component
 
-The `cytoscape` channel lets you define a graph and add nodes and edges in real time.
-
-
-### Create the channel
-
-```json
-{"command":"open","path":"/graph","type":"cytoscape","options":{"style":"<style or path>","layout":{"name":"cola"}, ...}}
-```
-
-For the possible `options`, see: http://js.cytoscape.org/#core/initialisation
-
-The style can be given as a string, as a path to a css file, or as a JSON structure as described in cytoscape's documentation. See: http://js.cytoscape.org/#style
-
-Then you can use the `element` command to add nodes and edges. There is a simple and basic way to do it, and a more full-featured one.
-
-### Add a node
-
-This create a node with id `A`:
-
-```json
-{"command":"element","path":"/graph","id":"A"}
-```
-
-### Add an edge
-
-This creates an edge between nodes `A` and `B`, but note that both must exist before the edge can be defined.
-
-```json
-{"command":"element","path":"/graph","source":"A","target":"B"}
-```
-
-### Full featured
-
-You can give an `options` object with more customization. Available options: http://js.cytoscape.org/#notation/elements-json
-
-```json
-{"command":"element","path":"/graph","options": {"data": {"source":"A","target":"B"},"classes":"abc"}}
-```
-
-## `cytoscape-graph` component
-
-Defines a self-contained graph in a single tag.
-
-Children of the `cytoscape-graph` tag must be:
-
-* `<style>...</style>`, a the style for the graph. See: http://js.cytoscape.org/#style
-* `<config>...</config>` contains the options. See: http://js.cytoscape.org/#core/initialisation
-* `<element>...</element>` defines a graph element. See:    http://js.cytoscape.org/#notation/elements-json
+The component is instantiated in HTML as follows:
 
 ```html
-<cytoscape-graph>
-    <style>
-        node {
-            background-color: blue;
-            content: data(id);
-        }
-        edge {
-            line-color: green;
-            target-arrow-color: green;
-            target-arrow-shape: triangle;
-            curve-style: bezier;
-        }
-    </style>
-    <config>
+<cytoscape-graph width="1000px" height="500px">
+    <command-configure><script type="application/json">
     {
-        "layout": {"name": "cose"}
+        "style": "<style or path to style>",
+        "layout": {"name": "cola"},
+        "elements": [
+            {"data": {"id": "A"},
+            {"data": {"id": "B"},
+            {"data": {"id": "C"},
+            {"data": {"source": "A", "target": "C"}},
+            {"data": {"source": "B", "target": "A"}},
+            {"data": {"source": "C", "target": "B"}}
+        ]
     }
-    </config>
-    <element>{"data": {"id": "A"}}</element>
-    <element>{"data": {"id": "B"}}</element>
-    <element>{"data": {"id": "C"}}</element>
-    <element>{"data": {"id": "D"}}</element>
-    <element>{"data": {"id": "E"}}</element>
-    <element>{"data": {"source": "A", "target": "B"}}</element>
-    <element>{"data": {"source": "B", "target": "C"}}</element>
-    <element>{"data": {"source": "C", "target": "A"}}</element>
-    <element>{"data": {"source": "A", "target": "D"}}</element>
-    <element>{"data": {"source": "D", "target": "E"}}</element>
-</cytoscape-graph>
+    </script></command-configure>
+</cytoscape-graph>`
 ```
 
+* [Configuration options](http://js.cytoscape.org/#getting-started/specifying-basic-options)
+* [Element options](http://js.cytoscape.org/#notation/elements-json)
+* [Styling nodes and edges](http://js.cytoscape.org/#style)
 
+
+### `configure` command
+
+If this is more convenient to you, you can leave out the configuration in `<cytoscape-graph>`, and use a separate command to configure it. For example (using node.js):
+
+```javascript
+function buche(cfg) {
+    console.log(JSON.stringify(cfg));
+}
+
+buche({
+    parent: "/",
+    tag: 'cytoscape-graph',
+    attributes: {
+        address: 'graph',
+        width: '1000px',
+        height: '1000px',
+    }
+})
+
+buche({
+    parent: "/graph",
+    command: "configure",
+    style: `${__dirname}/graph-style.css`,
+    layout: {name: "cola"},
+    elements: [
+        {"data": {"id": "A"},
+        {"data": {"id": "B"},
+        {"data": {"id": "C"},
+        {"data": {"source": "A", "target": "C"}},
+        {"data": {"source": "B", "target": "A"}},
+        {"data": {"source": "C", "target": "B"}}
+    ]
+})
+```
+
+The `<cytoscape-graph>` must have an `address` attribute in order for this to work, and the command must be directed to that address (see `parent` above).
+
+
+### `element` command
+
+Nodes and edges can be added incrementally using the `element` command. For example, to add node `D` and edge `A-D`:
+
+```javascript
+buche({
+    parent: '/graph',
+    command: 'element',
+    data: {
+        id: "D"
+    }
+});
+
+buche({
+    parent: '/graph',
+    command: 'element',
+    data: {
+        source: "A",
+        target: "D"
+    }
+});
+```
+
+It is allowed to omit the declaration of the nodes, since they will be created automatically if edges refer to them. You will need to declare the nodes, however, if you want to give them labels that differ from their id, or tooltips, or custom styles.
+
+Documentation for element creation is [here](http://js.cytoscape.org/#notation/elements-json).
