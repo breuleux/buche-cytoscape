@@ -109,3 +109,8 @@ buche({
 It is allowed to omit the declaration of the nodes, since they will be created automatically if edges refer to them. You will need to declare the nodes, however, if you want to give them labels that differ from their id, or tooltips, or custom styles.
 
 Documentation for element creation is [here](http://js.cytoscape.org/#notation/elements-json).
+
+
+### Tooltips
+
+Tooltips can be easily associated to any node or edge by setting the element's `data.tooltip` to some arbitrary HTML expression. See `examples/features.js`.
