@@ -114,3 +114,8 @@ Documentation for element creation is [here](http://js.cytoscape.org/#notation/e
 ### Tooltips
 
 Tooltips can be easily associated to any node or edge by setting the element's `data.tooltip` to some arbitrary HTML expression. See `examples/features.js`.
+
+
+### Examples
+
+The `examples/` directory contains a few examples in node.js or Python. There is also raw JSON output in the `.jsonl` files, so you can simply run `buche cat examples/features.jsonl` to check it out without having to run or install node.js.
